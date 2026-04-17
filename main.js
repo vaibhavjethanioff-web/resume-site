@@ -276,16 +276,19 @@ function goToStep(step) {
   }
 
   // Update progress indicator (only for numeric steps 1–4)
+  // NOTE: OTP is disabled, so progress shows: 1 → 3 → 4
   if (typeof step === 'number') {
     document.querySelectorAll('.progress-step').forEach(dot => {
       const n = parseInt(dot.dataset.step);
       dot.classList.remove('active', 'done');
-      if (n < step)  dot.classList.add('done');
+      // Progress logic: step 1 done when going to 3, step 3 done when going to 4
+      if (n === 1 && step > 1) dot.classList.add('done');
+      if (n === 3 && step > 3) dot.classList.add('done');
       if (n === step) dot.classList.add('active');
     });
-    ['pline-1','pline-2','pline-3'].forEach((id, i) => {
-      document.getElementById(id)?.classList.toggle('done', i + 1 < step);
-    });
+    // Update progress lines: only 2 lines now (pline-1 between 1-3, pline-2 between 3-4)
+    document.getElementById('pline-1')?.classList.toggle('done', step > 1);
+    document.getElementById('pline-2')?.classList.toggle('done', step > 3);
   }
 }
 
@@ -314,7 +317,7 @@ function setLoading(btnId, loading, resetText) {
 }
 
 // ============================================================
-// STEP 1 — Send OTP
+// STEP 1 — Send OTP (DISABLED FOR TESTING - SKIP TO DETAILS)
 // ============================================================
 async function handleSendOTP() {
   const phone = document.getElementById('phone-input').value.trim();
@@ -327,6 +330,9 @@ async function handleSendOTP() {
 
   setLoading('send-otp-btn', true);
 
+  // === OTP DISABLED FOR TESTING ===
+  // To re-enable OTP: Uncomment the try-catch block below and remove the direct goToStep(3)
+  /*
   try {
     const res  = await fetch('/.netlify/functions/send-otp', {
       method: 'POST',
@@ -350,6 +356,14 @@ async function handleSendOTP() {
   } finally {
     setLoading('send-otp-btn', false, 'Send OTP');
   }
+  */
+
+  // === SKIP OTP - GO DIRECTLY TO DETAILS ===
+  booking.phone = phone;
+  document.getElementById('phone-display').textContent = phone;
+  showMsg('otp-send-msg', 'Phone verified! Continue with your details.', 'success');
+  setTimeout(() => { hideMsg('otp-send-msg'); goToStep(3); }, 900);
+  setLoading('send-otp-btn', false, 'Continue');
 }
 
 // ============================================================
