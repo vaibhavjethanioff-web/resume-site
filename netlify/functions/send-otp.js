@@ -41,7 +41,7 @@ exports.handler = async (event) => {
       .update(payload)
       .digest('hex');
 
-    // Send OTP via Fast2SMS OTP route
+    // Send OTP via Fast2SMS DLT SMS API (after website verification)
     const smsRes = await fetch('https://www.fast2sms.com/dev/bulkV2', {
       method: 'POST',
       headers: {
@@ -49,8 +49,10 @@ exports.handler = async (event) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        route:           'otp',   // OTP route (free on Fast2SMS)
-        variables_values: otp,    // This value replaces {#var#} in their DLT template
+        route:           'dlt',           // DLT route (required for compliance)
+        sender_id:       process.env.DLT_SENDER_ID || 'your_sender_id', // Get from DLT registration
+        message:         `Your OTP for resume booking is: ${otp}. Valid for 5 minutes.`, // Exact message from DLT template
+        variables_values: otp,
         numbers:          phone
       })
     });
