@@ -152,8 +152,9 @@ fs.writeFileSync(mainJsPath, mainJs);
 
 console.log('✅ main.js updated - progress logic restored');
 
-console.log('\n🎉 OTP functionality re-enabled!');
+console.log('\n🎉 OTP functionality re-enabled with Twilio!');
 console.log('📝 Remember to:');
-console.log('   1. Set up DLT registration with Fast2SMS');
-console.log('   2. Add FAST2SMS_API_KEY and OTP_SECRET to .env');
-console.log('   3. Deploy to Netlify (functions won\'t work locally)');
+console.log('   1. Sign up for Twilio account at https://twilio.com/try-twilio');
+console.log('   2. Get your Account SID, Auth Token, and phone number');
+console.log('   3. Add TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_PHONE_NUMBER to Netlify env vars');
+console.log('   4. Deploy to Netlify (functions won\'t work locally)');

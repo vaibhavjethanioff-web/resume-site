@@ -41,29 +41,25 @@ exports.handler = async (event) => {
       .update(payload)
       .digest('hex');
 
-    // Send OTP via Fast2SMS DLT SMS API (after website verification)
-    const smsRes = await fetch('https://www.fast2sms.com/dev/bulkV2', {
+    // Send OTP via Twilio (free credits available)
+    const twilioRes = await fetch(`https://api.twilio.com/2010-04-01/Accounts/${process.env.TWILIO_ACCOUNT_SID}/Messages.json`, {
       method: 'POST',
       headers: {
-        authorization:  process.env.FAST2SMS_API_KEY,
-        'Content-Type': 'application/json'
+        'Authorization': 'Basic ' + Buffer.from(`${process.env.TWILIO_ACCOUNT_SID}:${process.env.TWILIO_AUTH_TOKEN}`).toString('base64'),
+        'Content-Type': 'application/x-www-form-urlencoded'
       },
-      body: JSON.stringify({
-        route:           'dlt',           // DLT route (required for compliance)
-        sender_id:       process.env.DLT_SENDER_ID || 'your_sender_id', // Get from DLT registration
-        message:         `Your OTP for resume booking is: ${otp}. Valid for 5 minutes.`, // Exact message from DLT template
-        variables_values: otp,
-        numbers:          phone
+      body: new URLSearchParams({
+        From: process.env.TWILIO_PHONE_NUMBER,
+        To: `+91${phone}`,
+        Body: `Your OTP for resume booking is: ${otp}. Valid for 5 minutes.`
       })
     });
 
-    const smsData = await smsRes.json();
+    const smsData = await twilioRes.json();
 
-    // Fast2SMS returns { return: true, ... } on success
-    if (!smsData.return) {
-      const errMsg = Array.isArray(smsData.message)
-        ? smsData.message.join(', ')
-        : (smsData.message || 'SMS delivery failed');
+    // Twilio returns { sid: 'SM...', status: 'queued' } on success
+    if (!smsData.sid) {
+      const errMsg = smsData.message || 'SMS delivery failed';
       throw new Error(errMsg);
     }
 
