@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Professional resume writing services — ATS-optimised resumes that land interviews.">
+  <!-- Razorpay key will be written here by JS after fetching from server -->
+  <meta name="razorpay-key" id="rzp-key-meta" content="">
+  <title id="page-title">Resume Writing Services</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- CONFIG must load before main.js -->
+  <script src="config.js"></script>
+</head>
+<body>
+
+  <!-- ================================================
+       NAV — fixed top bar
+  ================================================ -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo" id="nav-logo">Your Name</div>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#how-it-works">Process</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="nav-actions">
+        <a href="#booking" class="btn btn-primary" id="nav-cta">Book — ₹199</a>
+        <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile menu -->
+    <div class="nav-mobile-menu" id="mobile-menu">
+      <a href="#services"      class="mobile-link">Services</a>
+      <a href="#about"         class="mobile-link">About</a>
+      <a href="#how-it-works"  class="mobile-link">How It Works</a>
+      <a href="#testimonials"  class="mobile-link">Reviews</a>
+      <a href="#booking"       class="mobile-link mobile-link-cta">Book Session — ₹199</a>
+      <a href="#faq"           class="mobile-link">FAQ</a>
+    </div>
+  </nav>
+
+  <!-- ================================================
+       HERO — full viewport, dark background
+  ================================================ -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">⏱ The 6-Second Rule</div>
+      <h1 class="hero-headline" id="hero-tagline">Your resume has 6 seconds. Make&nbsp;that&nbsp;count.</h1>
+      <p class="hero-sub" id="hero-sub">I write resumes that survive ATS bots, stop the scroll, and land you the interview.</p>
+      <div class="hero-cta-row">
+        <a href="#booking" class="btn btn-primary btn-lg">Book My Session — ₹199</a>
+        <a href="#services" class="btn btn-outline-light">See What's Included</a>
+      </div>
+      <!-- Stats row — populated by JS -->
+      <div class="hero-stats" id="hero-stats"></div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       TICKER — scrolling marquee strip
+  ================================================ -->
+  <div class="ticker-strip" aria-hidden="true">
+    <div class="ticker-inner" id="ticker-inner"></div>
+  </div>
+
+  <!-- ================================================
+       SERVICES — 4-card grid
+  ================================================ -->
+  <section id="services">
+    <div class="section-inner">
+      <div class="section-label">What I Offer</div>
+      <h2 class="section-heading">Services</h2>
+      <div class="services-grid" id="services-grid">
+        <!-- Populated by main.js from CONFIG.services -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       ABOUT — photo left, text right
+  ================================================ -->
+  <section id="about">
+    <div class="section-inner about-inner">
+      <div class="about-photo-col">
+        <div class="about-photo-frame">
+          <img id="about-photo" src="" alt="Profile photo" loading="lazy">
+        </div>
+      </div>
+      <div class="about-text-col">
+        <div class="section-label">About Me</div>
+        <h2 class="section-heading" id="about-heading">Hi, I'm Your Name</h2>
+        <div id="about-text">
+          <!-- Populated by main.js -->
+        </div>
+        <div class="skills-grid" id="skills-grid">
+          <!-- Populated by main.js -->
+        </div>
+        <div class="about-socials">
+          <a id="about-linkedin"  href="#" class="social-link" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+          <a id="about-whatsapp" href="#" class="social-link" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
+          <a id="about-email"    href="#" class="social-link">Email ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       HOW IT WORKS — 4 numbered steps
+  ================================================ -->
+  <section id="how-it-works">
+    <div class="section-inner">
+      <div class="section-label">The Process</div>
+      <h2 class="section-heading">How It Works</h2>
+      <div class="steps-grid" id="steps-grid">
+        <!-- Populated by main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       TESTIMONIALS — 3 cards
+  ================================================ -->
+  <section id="testimonials">
+    <div class="section-inner">
+      <div class="section-label">Results</div>
+      <h2 class="section-heading">What Clients Say</h2>
+      <div class="testimonials-grid" id="testimonials-grid">
+        <!-- Populated by main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       BOOKING — perks left, 4-step widget right
+  ================================================ -->
+  <section id="booking">
+    <div class="section-inner booking-inner">
+
+      <!-- Left column: perks + slot info -->
+      <div class="booking-perks">
+        <div class="section-label">One Session. Real Results.</div>
+        <h2 class="section-heading">Book Your<br>Session</h2>
+        <p class="booking-price-tag">
+          ₹<span id="booking-price">199</span>
+          &nbsp;·&nbsp;
+          <span id="booking-duration">30 minutes</span>
+        </p>
+        <ul class="perks-list" id="perks-list">
+          <!-- Populated by main.js -->
+        </ul>
+        <div class="available-slots">
+          <p class="slots-label">Available Slots</p>
+          <ul class="slots-list" id="slots-list">
+            <!-- Populated by main.js -->
+          </ul>
+        </div>
+      </div>
+
+      <!-- Right column: booking widget -->
+      <div class="booking-widget">
+
+        <!-- Step progress indicator -->
+        <div class="progress-bar" id="progress-bar">
+          <div class="progress-step active" data-step="1">1</div>
+          <div class="progress-line" id="pline-1"></div>
+          <div class="progress-step" data-step="2">2</div>
+          <div class="progress-line" id="pline-2"></div>
+          <div class="progress-step" data-step="3">3</div>
+          <div class="progress-line" id="pline-3"></div>
+          <div class="progress-step" data-step="4">4</div>
+        </div>
+
+        <!-- ── STEP 1: Phone number ── -->
+        <div class="booking-step active" id="step-1">
+          <h3>Enter your phone number</h3>
+          <p class="step-desc">We'll send a one-time OTP to verify your number.</p>
+          <div class="input-group">
+            <span class="input-prefix">+91</span>
+            <input
+              type="tel"
+              id="phone-input"
+              placeholder="10-digit mobile number"
+              maxlength="10"
+              inputmode="numeric"
+              autocomplete="tel-national"
+            >
+          </div>
+          <button class="btn btn-primary btn-full" id="send-otp-btn">Send OTP</button>
+          <div class="form-msg" id="otp-send-msg"></div>
+        </div>
+
+        <!-- ── STEP 2: OTP verification ── -->
+        <div class="booking-step" id="step-2">
+          <h3>Verify OTP</h3>
+          <p class="step-desc">6-digit code sent to +91&nbsp;<strong id="phone-display"></strong></p>
+          <input
+            type="text"
+            id="otp-input"
+            class="otp-input"
+            placeholder="— — — — — —"
+            maxlength="6"
+            inputmode="numeric"
+            autocomplete="one-time-code"
+          >
+          <button class="btn btn-primary btn-full" id="verify-otp-btn">Verify OTP</button>
+          <button class="btn btn-ghost btn-full" id="resend-otp-btn" style="margin-top:10px;">Resend OTP</button>
+          <div class="form-msg" id="otp-verify-msg"></div>
+        </div>
+
+        <!-- ── STEP 3: Name, email, slot ── -->
+        <div class="booking-step" id="step-3">
+          <h3>Your Details</h3>
+          <p class="step-desc">Tell us who you are and when to meet.</p>
+          <input type="text"  id="name-input"  class="form-input" placeholder="Full Name"      autocomplete="name">
+          <input type="email" id="email-input" class="form-input" placeholder="Email Address"  autocomplete="email">
+          <input type="date"  id="date-input"  class="form-input" aria-label="Select date">
+          <select id="slot-select" class="form-input">
+            <option value="">Select a time slot</option>
+            <!-- Populated by main.js -->
+          </select>
+          <button class="btn btn-primary btn-full" id="continue-btn">Continue to Payment</button>
+          <div class="form-msg" id="details-msg"></div>
+        </div>
+
+        <!-- ── STEP 4: Summary + pay ── -->
+        <div class="booking-step" id="step-4">
+          <h3>Booking Summary</h3>
+          <div class="summary-card">
+            <div class="summary-row"><span>Name</span>   <strong id="summary-name"></strong></div>
+            <div class="summary-row"><span>Phone</span>  <strong id="summary-phone"></strong></div>
+            <div class="summary-row"><span>Email</span>  <strong id="summary-email"></strong></div>
+            <div class="summary-row"><span>Date</span>   <strong id="summary-date"></strong></div>
+            <div class="summary-row"><span>Slot</span>   <strong id="summary-slot"></strong></div>
+            <div class="summary-row summary-total">
+              <span>Total</span>
+              <strong id="summary-total">₹199</strong>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-full btn-lg" id="pay-btn">
+            Pay ₹<span id="pay-amount">199</span> Now
+          </button>
+          <p class="payment-note">🔒 Secured by Razorpay · UPI · Cards · Net Banking</p>
+          <div class="form-msg" id="payment-msg"></div>
+        </div>
+
+        <!-- ── SUCCESS state ── -->
+        <div class="booking-step" id="step-success">
+          <div class="success-icon">✓</div>
+          <h3>Booking Confirmed!</h3>
+          <p class="step-desc">
+            Check your email for the confirmation and meeting details.<br>
+            Please send your current resume to <strong id="success-email"></strong> before the session.
+          </p>
+          <a id="calendar-link" href="#" class="btn btn-outline" target="_blank" rel="noopener noreferrer" style="margin-top:16px;">
+            Add to Google Calendar →
+          </a>
+        </div>
+
+      </div><!-- /booking-widget -->
+    </div><!-- /booking-inner -->
+  </section>
+
+  <!-- ================================================
+       FAQ — accordion
+  ================================================ -->
+  <section id="faq">
+    <div class="section-inner">
+      <div class="section-label">Questions?</div>
+      <h2 class="section-heading">FAQ</h2>
+      <div class="faq-list" id="faq-list">
+        <!-- Populated by main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       FOOTER
+  ================================================ -->
+  <footer id="footer">
+    <div class="footer-inner">
+      <div class="footer-logo" id="footer-logo">Your Name</div>
+      <p class="footer-tagline" id="footer-tagline"></p>
+      <div class="footer-links">
+        <a id="footer-email"    href="#">Email</a>
+        <a id="footer-linkedin" href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a id="footer-whatsapp" href="#" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
+      <p class="footer-copy">© <span id="footer-year"></span> All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Razorpay Checkout SDK (loaded from CDN) -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+  <!-- Main app logic — must load after config.js and Razorpay SDK -->
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "resume-site",
+  "version": "1.0.0",
+  "description": "Professional Resume Writing Services",
+  "dependencies": {
+    "razorpay": "^2.9.2",
+    "nodemailer": "^6.9.7",
+    "googleapis": "^136.0.0"
+  }
+}
